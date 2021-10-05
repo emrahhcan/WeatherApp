@@ -7,10 +7,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-let weatherCity = [];
-let weatherTemp = [];
-let weatherDesc = [];
-let weatherImage = [];
+let weather = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -28,10 +25,7 @@ app.get('/', (req, res) => {
 
     res.render('weather', {
         currentDate: day,
-        weatherList: weatherCity,
-        temperature: weatherTemp,
-        description: weatherDesc,
-        weatherIcon: weatherImage
+        weatherList: weather
     });
 
 });
@@ -50,11 +44,14 @@ app.post('/', (req, res) => {
             const description = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon;
             const imgURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-
-            weatherCity.push(city);
-            weatherTemp.push(temp);
-            weatherDesc.push(description);
-            weatherImage.push(imgURL);
+            const weatherProperties = {
+                city: city,
+                temp: temp,
+                description: description,
+                icon: imgURL
+            };
+            
+            weather.push(weatherProperties);
             res.redirect('/');
         });
     });
