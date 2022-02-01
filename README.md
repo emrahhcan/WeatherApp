@@ -1,6 +1,6 @@
 # WeatherApp
 
-Weather App which is prepared using NodeJS with Express along with Open Weather Map API
+Weather App is prepared using NodeJS with Express along with Open Weather Map API
 
 [Click Here to Visit App](https://weather-list-nodejs.herokuapp.com)
 
